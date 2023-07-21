@@ -12,7 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contactos:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -20,9 +21,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/nicolas")
+				.then((res) => res.json())
+				.then((data) => setStore({contactos: data}));
 			},
 			changeColor: (index, color) => {
 				//get the store
